@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gm-leaderboard-server
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: CORS_ORIGIN
+        fromService:
+          name: gm-leaderboard-client
+          type: static
+          property: url
+    healthCheckPath: /health
